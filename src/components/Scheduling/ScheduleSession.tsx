@@ -9,11 +9,11 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import GetScheduleId from "@/hook/getTimeSchedulling/GetScheduleId";
+import { Calendar, Clock, Video } from "lucide-react";
+import { Link } from "react-router";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { Skeleton } from "../ui/skeleton";
-import { Clock, CodeXml, Video } from "lucide-react";
-import { Link } from "react-router";
 
 interface ScheduleSessionProps {
   user: unknown; // Replace 'unknown' with a specific user type if available
@@ -35,9 +35,8 @@ const ScheduleSession = ({ user }: ScheduleSessionProps) => {
     <div>
       <Drawer>
         <DrawerTrigger asChild>
-          <Button className="w-full cursor-pointer" size="sm">
-            <CodeXml className="h-4 w-4 mr-2" />
-            Schedule Session
+          <Button className="size-10 cursor-pointer rounded-full items-center">
+            <Calendar className="size-4" />
           </Button>
         </DrawerTrigger>
         <DrawerContent className="mx-auto w-full max-w-xl">

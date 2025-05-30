@@ -46,8 +46,8 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="container mx-auto py-10">
-      <Card className="max-w-2xl mx-auto">
+    <>
+      <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Create Your Account</CardTitle>
           <CardDescription>
@@ -85,7 +85,7 @@ export default function RegisterPage() {
           </p>
         </div>
       </Card>
-    </div>
+    </>
   );
 }
 

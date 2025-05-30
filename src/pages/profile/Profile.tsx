@@ -94,6 +94,7 @@ const Profile = () => {
                     {developer?.profile?.name}
                   </h1>
                 </div>
+
                 <div>
                   <p className="text-sm  text-primary">
                     {developer?.profile?.username}

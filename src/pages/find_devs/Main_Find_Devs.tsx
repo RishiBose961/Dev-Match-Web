@@ -1,10 +1,13 @@
+"use client";
+
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Skeleton } from "@/components/ui/skeleton";
 import GetAllUser from "@/hook/getAllUser/GetAllUser";
 import { motion } from "framer-motion";
+import { Users } from "lucide-react";
 import { useSelector } from "react-redux";
-import Devs from "./Devs";
-import ProjectShow from "./ProjectShow";
 import { Link } from "react-router";
+import Devs from "./Devs";
 
 const Main_Find_Devs = () => {
   interface User {
@@ -31,40 +34,91 @@ const Main_Find_Devs = () => {
   );
 
   if (isPending) {
-    return <div>Loading...</div>;
+    return (
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <Skeleton className="h-6 w-64" />
+          <Skeleton className="h-4 w-48" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div key={index} className="space-y-3">
+              <Skeleton className="h-32 w-full rounded-lg" />
+              <Skeleton className="h-4 w-3/4" />
+              <Skeleton className="h-4 w-1/2" />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="space-y-4">
-      
-      {/* Desktop Layout */}
-      <div className="flex justify-center items-center">
-        {/* <div className="hidden lg:block">
-    <Search_Find_Devs />
-  </div> */}
-        <div className="w-full max-w-4xl mb-20">
-            <div>
-            {!isAuthenticated ? (
-              <p className="font-bold mb-2">Sign in to find developers <Link to={"/login"}> <span className="text-blue-500 hover:text-blue-700 underline">here</span></Link></p>
-            ) : (
-              <p className="font-bold mb-2">Hi, {user?.name}</p>
-            )}
+    <div className="space-y-6">
+      {/* Header Section */}
+      <div className="space-y-4">
+        {!isAuthenticated ? (
+          <div className="flex items-center gap-2">
+            <p className="text-lg font-semibold ">
+              Please{" "}
+              <Link to="/login" className="text-blue-600 hover:underline">
+                log in
+              </Link>{" "}
+              to find amazing developers.
+            </p>
           </div>
-          <ProjectShow/>
-    
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4 }}
-          >
-            <ScrollArea className=" rounded-md  p-4 overflow-y-auto scroll-smooth">
-              {getuser?.users?.map((item, index) => (
-                <Devs item={item} index={index} key={index} />
-              ))}
-            </ScrollArea>
-          </motion.div>
-        </div>
+        ) : (
+          <div className="flex items-center gap-2">
+            <Users className="h-5 w-5 " />
+            <p className="text-lg font-semibold ">
+              Hi, {user?.name}! Find amazing developers below.
+            </p>
+          </div>
+        )}
       </div>
+
+      {/* Developers Grid */}
+      <ScrollArea className="h-[calc(100vh-200px)]">
+        <div className="space-y-4">
+          {getuser?.users && getuser.users.length > 0 ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {getuser.users.map((item, index) => (
+                <motion.div
+                  key={item._id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: index * 0.1,
+                    ease: "easeOut",
+                  }}
+                  whileHover={{
+                    y: -4,
+                    transition: { duration: 0.2 },
+                  }}
+                >
+                  <Devs item={item} index={index} />
+                </motion.div>
+              ))}
+            </motion.div>
+          ) : (
+            <div className="text-center py-12">
+              <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                No developers found
+              </h3>
+              <p className="text-gray-500">
+                Check back later for new developers to connect with.
+              </p>
+            </div>
+          )}
+        </div>
+      </ScrollArea>
     </div>
   );
 };

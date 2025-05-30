@@ -48,6 +48,12 @@ const Devs = ({ item, index }: { item: DevItem; index: number }) => {
               </div>
 
               <div className="mt-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <h4 className="font-semibold text-sm text-foreground">
+                    Skills & Expertise
+                  </h4>
+                  <div className="h-px bg-gradient-to-r from-primary/50 to-transparent flex-1" />
+                </div>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {nofounduserDetails
                     ? " No Skill Found "
@@ -74,19 +80,21 @@ const Devs = ({ item, index }: { item: DevItem; index: number }) => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3  gap-2 mt-4">
-                <Button size="sm">
-                  <Handshake className="h-4 w-4 mr-2" />
-                  Connect
+              <div className="flex items-center gap-2 mt-4">
+                <Button className="size-10 cursor-pointer rounded-full items-center">
+                  <Handshake className="size-5" />
                 </Button>
+
                 <div>
                   <ScheduleSession user={item?._id} />
                 </div>
 
-                <Link to={`/profile/${item?.username}`}>
-                  <Button size="sm" className="w-full cursor-pointer">
-                    <User className="h-4 w-4 mr-2" />
-                    View Profile
+                <Link
+                  to={`/profile/${item?.username}`}
+                  className="w-full block"
+                >
+                  <Button className="size-10 cursor-pointer rounded-full items-center">
+                    <User className=" size-5" />
                   </Button>
                 </Link>
               </div>

@@ -16,9 +16,9 @@ const arr = [
 
 const ProjectShow = () => {
   return (
-    <div className="max-w-4xl mx-auto">
-      <ScrollArea className="w-full whitespace-nowrap rounded-md pb-4">
-        <div className="flex space-x-4 p-1">
+    <div >
+      <ScrollArea className="whitespace-nowrap rounded-md pb-4">
+        <div>
           {arr.map((item, index) => (
             <div
               key={index}
