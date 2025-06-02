@@ -1,20 +1,19 @@
 import ProfileAvatar from "@/components/Find_Dev/ProfileAvatar";
+import FollowButton from "@/components/Follow/FollowButton";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
+
 import {
   Award,
   Briefcase,
   Calendar,
   Code2,
   Mail,
-  MessageSquare,
   Settings,
-  Users,
+  Users
 } from "lucide-react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router";
-
 interface Experience {
   position_at: string;
   company: string;
@@ -25,6 +24,7 @@ interface Experience {
 
 const Profile = () => {
   const { id } = useParams();
+  
 
   const { user } = useSelector(
     (state: {
@@ -65,14 +65,14 @@ const Profile = () => {
     Array.isArray(developer?.experience) && developer.experience.length === 0;
 
   return (
-    <div className=" max-w-6xl mx-auto transition-colors mb-20 duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="  transition-colors mb-20 duration-200">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="shadow rounded-md overflow-hidden transition-colors duration-200">
           {/* Cover photo */}
           <div className="h-32 bg-gradient-to-r from-blue-500 to-purple-600 relative">
             <div className="absolute -bottom-15 left-8">
               <ProfileAvatar
-                image={developer?.userDetails?.image}
+                image={developer?.profile?.image}
                 name={developer?.profile?.name}
                 avali={developer?.profile?._id}
               />
@@ -119,14 +119,7 @@ const Profile = () => {
               </div>
 
               <div className="mt-4 md:mt-0 flex space-x-3">
-                <Button className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-white transition-colors duration-200">
-                  <MessageSquare className="h-5 w-5 mr-2" />
-                  Message
-                </Button>
-                <Button className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200">
-                  <Code2 className="h-5 w-5 mr-2" />
-                  Schedule Session
-                </Button>
+                <FollowButton/>
               </div>
             </div>
 

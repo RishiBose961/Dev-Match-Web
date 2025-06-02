@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
-import SideBar from "./SideBar";
 import NavBar from "./NavBar";
-import BottomNavigation from "./Bottomavigation";
+import SideBar from "./SideBar";
 
 import type { ReactNode } from "react";
 
@@ -26,7 +25,7 @@ const Layout = ({ children }: LayoutProps) => {
           <NavBar />
           <div className="m-5">{children}</div>
         </div>
-        {isAuthenticated && <BottomNavigation />}
+ 
       </div>
     </>
   );

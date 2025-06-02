@@ -116,6 +116,8 @@ const JoinRequest = () => {
 
       {isExpired ? (
         <p className="text-red-500 text-center">Session Expired</p>
+      ) : getEveryTimeSchedule?.postedBy === user?._id ? (
+       <p className="text-red-500 text-center">You can't join your own session</p> 
       ) : (
         <Button className="w-full" onClick={handleSubmit}>
           Join Session

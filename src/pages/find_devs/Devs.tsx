@@ -3,7 +3,7 @@ import ScheduleSession from "@/components/Scheduling/ScheduleSession";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Calendar, Handshake, User } from "lucide-react";
+import { Calendar, Heart, Share2, User } from "lucide-react";
 import { Link } from "react-router";
 
 interface DevItem {
@@ -26,14 +26,14 @@ interface DevItem {
 const Devs = ({ item, index }: { item: DevItem; index: number }) => {
   const nofounduserDetails = Object.keys(item?.userDetails || {}).length === 0;
   return (
-    <div className="mb-4" key={index}>
+    <div className="mb-3" key={index}>
       <Card>
         <CardContent className="p-0">
           <div className="flex flex-col sm:flex-row">
             <div className="w-full p-4">
               <div className="flex items-center gap-4">
                 <Avatars
-                  image={item?.userDetails?.image}
+                  image={item?.image}
                   name={item?.name}
                   avali={item?._id}
                 />
@@ -82,13 +82,15 @@ const Devs = ({ item, index }: { item: DevItem; index: number }) => {
 
               <div className="flex items-center gap-2 mt-4">
                 <Button className="size-10 cursor-pointer rounded-full items-center">
-                  <Handshake className="size-5" />
+                  <Heart className="size-5" />
                 </Button>
 
                 <div>
                   <ScheduleSession user={item?._id} />
                 </div>
-
+                <Button className="size-10 cursor-pointer rounded-full items-center">
+                  <Share2 className="size-5" />
+                </Button>
                 <Link
                   to={`/profile/${item?.username}`}
                   className="w-full block"

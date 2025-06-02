@@ -8,6 +8,7 @@ import { Users } from "lucide-react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router";
 import Devs from "./Devs";
+import Recom_Dev from "@/components/recommadation/Recom_Dev";
 
 const Main_Find_Devs = () => {
   interface User {
@@ -54,7 +55,7 @@ const Main_Find_Devs = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div>
       {/* Header Section */}
       <div className="space-y-4">
         {!isAuthenticated ? (
@@ -78,46 +79,40 @@ const Main_Find_Devs = () => {
       </div>
 
       {/* Developers Grid */}
-      <ScrollArea className="h-[calc(100vh-200px)]">
-        <div className="space-y-4">
-          {getuser?.users && getuser.users.length > 0 ? (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {getuser.users.map((item, index) => (
-                <motion.div
-                  key={item._id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.1,
-                    ease: "easeOut",
-                  }}
-                  whileHover={{
-                    y: -4,
-                    transition: { duration: 0.2 },
-                  }}
-                >
-                  <Devs item={item} index={index} />
-                </motion.div>
-              ))}
-            </motion.div>
-          ) : (
-            <div className="text-center py-12">
-              <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
-                No developers found
-              </h3>
-              <p className="text-gray-500">
-                Check back later for new developers to connect with.
-              </p>
-            </div>
-          )}
-        </div>
+      <ScrollArea className="h-[800px] rounded-xl p-4">
+        <Recom_Dev />
+
+        {getuser?.users && getuser.users.length > 0 ? (
+          <div className="columns-1 sm:columns-2 lg:columns-3">
+            {getuser.users.map((item, index) => (
+              <motion.div
+                key={item._id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.05,
+                  ease: "easeOut",
+                }}
+                whileHover={{
+                  y: -4,
+                  transition: { duration: 0.2 },
+                }}
+                className=" break-inside-avoid"
+              >
+                <Devs item={item} index={index} />
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <Users className="h-12 w-12 mx-auto mb-4" />
+            <h3 className="text-lg font-medium mb-2">No developers found</h3>
+            <p className="text-gray-500">
+              Check back later for new developers to connect with.
+            </p>
+          </div>
+        )}
       </ScrollArea>
     </div>
   );
