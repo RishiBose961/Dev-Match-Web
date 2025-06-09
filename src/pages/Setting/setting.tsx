@@ -22,9 +22,14 @@ export default function SettingsPage() {
   const { isPending, getUserId } = GetUserId() as unknown as {
     isPending: boolean;
     getUserId: {
-      profile: never;
+      profile: {
+        name?: string;
+        username?: string;
+        email?: string;
+        availableHistory?: string;
+        image?: string;
+      };
       userDetails: {
-        image: string;
         about: string;
         availability: string;
         collaboration: string;
@@ -97,7 +102,7 @@ export default function SettingsPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <SettingAvatar image={getUserId?.userDetails?.image} />
+                <SettingAvatar image={getUserId?.profile?.image ?? ""} />
               </CardContent>
             </Card>
           </TabsContent>

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
+  BellRing,
   Calendar,
   Menu,
   Presentation,
@@ -47,6 +48,11 @@ export default function Sidebar() {
             label: "Schedule",
             icon: <Calendar className="w-5 h-5 mr-3" />,
           },
+          {
+            to: "/notification",
+            label: "Notification",
+            icon: <BellRing className="w-5 h-5 mr-3" />,
+          },
         ]
       : []),
     {
@@ -54,6 +60,7 @@ export default function Sidebar() {
       label: isAuthenticated ? "Profile" : "Login",
       icon: <User2 className="w-5 h-5 mr-3" />,
     },
+ 
   ];
 
   return (

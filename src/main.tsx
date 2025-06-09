@@ -24,6 +24,7 @@ import SettingsPage from "./pages/Setting/setting.tsx";
 import JoinRequest from "./pages/join_Request/JoinRequest.tsx";
 import Room from "./pages/Room/Room.tsx";
 import VideoMeeting from "./pages/Video-Meeting/VideoMeeting.tsx";
+import Notication from "./pages/notification/Notication.tsx";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const router = createBrowserRouter(
         <Route path="/setting" element={<SettingsPage />} />
         <Route path="/request/:id" element={<JoinRequest />} />
         <Route path="/meeting-room" element={<Room />} />
+        <Route path="/notification" element={<Notication />} />
         <Route path="/meeting-room/:id" element={<VideoMeeting />} />
       </Route>
     </Route>

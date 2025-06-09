@@ -79,7 +79,7 @@ const Main_Find_Devs = () => {
       </div>
 
       {/* Developers Grid */}
-      <ScrollArea className="h-[800px] rounded-xl p-4">
+      <ScrollArea className="h-[800px] rounded-xl p-2">
         <Recom_Dev />
 
         {getuser?.users && getuser.users.length > 0 ? (

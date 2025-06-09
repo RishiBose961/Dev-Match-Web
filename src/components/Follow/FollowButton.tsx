@@ -16,7 +16,7 @@ const FollowButton = () => {
           damping: 25,
           mass: 0.8,
         }}
-        className="inline-flex items-center px-2 py-2 bg-blue-600  cursor-pointer text-white border border-transparent 
+        className="inline-flex items-center px-2 py-2 bg-primary  cursor-pointer text-white border border-transparent 
                    rounded-lg shadow-lg transition-all duration-300 ease-out
                    hover:bg-primary hover:shadow-xl focus:outline-none  focus:ring-offset-2
                    relative overflow-hidden"
