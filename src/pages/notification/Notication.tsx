@@ -16,7 +16,7 @@ const Notication = () => {
     setActiveTab(value);
   };
   return (
-    <div>
+    <div className=" max-w-6xl mx-auto mb-20">
       {" "}
       <Tabs value={activeTab} onValueChange={handleTabChange} className="mt-4">
         <TabsList>

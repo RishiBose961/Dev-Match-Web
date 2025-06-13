@@ -25,6 +25,8 @@ import JoinRequest from "./pages/join_Request/JoinRequest.tsx";
 import Room from "./pages/Room/Room.tsx";
 import VideoMeeting from "./pages/Video-Meeting/VideoMeeting.tsx";
 import Notication from "./pages/notification/Notication.tsx";
+import PullRequest from "./pages/pull_request/PullRequest.tsx";
+import DashBoard from "./pages/Dashboard/DashBoard.tsx";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +46,8 @@ const router = createBrowserRouter(
         <Route path="/meeting-room" element={<Room />} />
         <Route path="/notification" element={<Notication />} />
         <Route path="/meeting-room/:id" element={<VideoMeeting />} />
+        <Route path="/pull-request" element={<PullRequest />} />
+        <Route path="/dashboard" element={<DashBoard />} />
       </Route>
     </Route>
   )

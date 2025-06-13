@@ -3,15 +3,17 @@ import { cn } from "@/lib/utils";
 import {
   BellRing,
   Calendar,
+  HeartHandshake,
+  LayoutDashboardIcon,
   Menu,
   Presentation,
   User2,
   Users,
-  X,
+  X
 } from "lucide-react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useLocation, Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,6 +55,16 @@ export default function Sidebar() {
             label: "Notification",
             icon: <BellRing className="w-5 h-5 mr-3" />,
           },
+          {
+            to: "/pull-request",
+            label: "Pull Request",
+            icon: <HeartHandshake className="w-5 h-5 mr-3" />,
+          },
+          {
+            to: "/dashboard",
+            label: "Dashboard",
+            icon: <LayoutDashboardIcon className="w-5 h-5 mr-3" />,
+          }
         ]
       : []),
     {
