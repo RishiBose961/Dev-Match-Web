@@ -25,6 +25,7 @@ const Layout = ({ children }: LayoutProps) => {
           <NavBar />
           <div className="m-5">{children}</div>
         </div>
+     
  
       </div>
     </>

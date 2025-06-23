@@ -10,7 +10,7 @@ import {
   Code2,
   Mail,
   Settings,
-  Users
+  Users,
 } from "lucide-react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router";
@@ -24,7 +24,6 @@ interface Experience {
 
 const Profile = () => {
   const { id } = useParams();
-  
 
   const { user } = useSelector(
     (state: {
@@ -58,12 +57,15 @@ const Profile = () => {
     return <span>Pending...</span>;
   }
 
+  
+
   const nofounduserDetails =
     Object.keys(developer?.userDetails || {}).length === 0;
 
   const nofoundExperience =
     Array.isArray(developer?.experience) && developer.experience.length === 0;
 
+  const receiverid = developer?.profile?._id;
   return (
     <div className="  transition-colors mb-20 duration-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -119,7 +121,7 @@ const Profile = () => {
               </div>
 
               <div className="mt-4 md:mt-0 flex space-x-3">
-                <FollowButton/>
+                <FollowButton recerid={receiverid} />
               </div>
             </div>
 

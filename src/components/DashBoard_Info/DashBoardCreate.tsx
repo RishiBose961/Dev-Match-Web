@@ -1,17 +1,20 @@
+import GetAvaliHook from "@/hook/getAvaliable/GetAvaliHook";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import { useEffect, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { useEffect, useState, useMemo } from "react";
-import { useSelector } from "react-redux";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Switch } from "../ui/switch";
-import GetAvaliHook from "@/hook/getAvaliable/GetAvaliHook";
-import axios from "axios";
 
 const DashBoardCreate = () => {
   const [roomname, setRoomname] = useState("");
+  const [roomid, setRoomid] = useState("");
   const [availabilityEnabled, setAvailabilityEnabled] = useState(false);
 
+  const navigate = useNavigate();
   const hookResult = GetAvaliHook();
   const getAvaliable =
     hookResult && "getAvaliable" in hookResult ? hookResult.getAvaliable : null;
@@ -23,7 +26,6 @@ const DashBoardCreate = () => {
       isAuthenticated: boolean;
       user: {
         token?: string;
-        // add other user properties as needed
         [key: string]: string | number | boolean | undefined;
       } | null;
     };
@@ -36,14 +38,12 @@ const DashBoardCreate = () => {
 
   const token = useMemo(() => user?.token || "", [user]);
 
-  // Sync availability state from backend
   useEffect(() => {
     if (getAvaliable?.available !== undefined) {
       setAvailabilityEnabled(getAvaliable.available);
     }
   }, [getAvaliable]);
 
-  // Update availability (ON/OFF)
   const updateAvailability = useMutation({
     mutationFn: async (available: boolean) => {
       const response = await fetch(
@@ -66,13 +66,12 @@ const DashBoardCreate = () => {
     },
   });
 
-  // Go live (creates live session)
   const createLiveSession = useMutation({
-    mutationFn: async (data: { roomname: string }) => {
+    mutationFn: async (data: { roomname: string; roomid: string }) => {
       if (!token) throw new Error("User not authenticated");
       const res = await axios.post(
         "http://localhost:5000/api/create/golive",
-        { roomname: data.roomname },
+        { roomname: data.roomname, roomid: data.roomid },
         {
           headers: {
             "Content-Type": "application/json",
@@ -83,7 +82,8 @@ const DashBoardCreate = () => {
       return res.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["live"] });
+      queryClient.invalidateQueries({ queryKey: ["getDashBoard"] });
+      navigate(`/space/${roomid}`);
       alert("Live session started!");
     },
     onError: (error: unknown) => {
@@ -93,28 +93,60 @@ const DashBoardCreate = () => {
     },
   });
 
-  // Handle button click
   const handleGoLiveToggle = async () => {
     const goingLive = !availabilityEnabled;
 
-    // Prevent live creation without room name
     if (goingLive && !roomname.trim()) {
       alert("Please enter a room name to go live.");
       return;
     }
 
     try {
+      let finalRoomId = roomid;
+      if (goingLive && !roomid.trim()) {
+        const words = [
+          "chat",
+          "talk",
+          "voice",
+          "room",
+          "space",
+          "hub",
+          "lounge",
+          "cafe",
+        ];
+        const randomWord = words[Math.floor(Math.random() * words.length)];
+        const randomNum = Math.floor(Math.random() * 1000);
+        finalRoomId = `${randomWord}-${randomNum}`;
+        setRoomid(finalRoomId);
+      }
+
       setAvailabilityEnabled(goingLive);
       await updateAvailability.mutateAsync(goingLive);
 
       if (goingLive) {
-        await createLiveSession.mutateAsync({ roomname });
+        await createLiveSession.mutateAsync({ roomname, roomid: finalRoomId });
       } else {
         alert("You have ended your live session.");
       }
     } catch (error) {
       console.error("Toggle failed", error);
     }
+  };
+
+  const generateRoomId = () => {
+    const words = [
+      "chat",
+      "talk",
+      "voice",
+      "room",
+      "space",
+      "hub",
+      "lounge",
+      "cafe",
+    ];
+    const randomWord = words[Math.floor(Math.random() * words.length)];
+    const randomNum = Math.floor(Math.random() * 1000);
+    setRoomid(`${randomWord}-${randomNum}`);
   };
 
   return (
@@ -132,7 +164,24 @@ const DashBoardCreate = () => {
             disabled={availabilityEnabled}
           />
         </div>
-
+        <div className="space-y-2">
+          <Label>Room Id</Label>
+          <div className="flex justify-center">
+            <Input
+              id="roomid"
+              name="roomid"
+              placeholder="Enter Room ID or Generate"
+              className="mx-2"
+              required
+              value={roomid}
+              onChange={(e) => setRoomid(e.target.value)}
+              disabled={availabilityEnabled}
+            />
+            <Button type="button" onClick={generateRoomId}>
+              Generate
+            </Button>
+          </div>
+        </div>
         <div>
           <Label>Your Availability</Label>
           <div className="flex items-center mt-2 space-x-2 w-full ml-2 p-2 rounded-full shadow-sm border border-slate-100">

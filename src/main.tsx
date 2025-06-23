@@ -27,6 +27,7 @@ import VideoMeeting from "./pages/Video-Meeting/VideoMeeting.tsx";
 import Notication from "./pages/notification/Notication.tsx";
 import PullRequest from "./pages/pull_request/PullRequest.tsx";
 import DashBoard from "./pages/Dashboard/DashBoard.tsx";
+import AudioSpace from "./pages/Audio-Space/Audio-Space.tsx";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +49,7 @@ const router = createBrowserRouter(
         <Route path="/meeting-room/:id" element={<VideoMeeting />} />
         <Route path="/pull-request" element={<PullRequest />} />
         <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/space/:id" element={<AudioSpace />} />
       </Route>
     </Route>
   )

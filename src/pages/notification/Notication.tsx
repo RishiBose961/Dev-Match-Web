@@ -1,6 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
+import PullNotify from "./PullNotify";
 
 const Notication = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,7 +25,7 @@ const Notication = () => {
           <TabsTrigger value="meet">Meeting Notify</TabsTrigger>
         </TabsList>
         <TabsContent value="pull">
-          <p>Created Session</p>
+          <PullNotify/>
         </TabsContent>
         <TabsContent value="meet">
           <p>Pending Request</p>
