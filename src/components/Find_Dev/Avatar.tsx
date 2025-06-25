@@ -27,7 +27,7 @@ const Avatars = ({ image, name, avali }: AvatarsProps) => {
       } flex items-center justify-center`}
     >
       <div className="w-full h-full rounded-full overflow-hidden">
-        <Avatar className="w-full h-full bg-zinc-300">
+        <Avatar className="w-full h-full bg-gradient-to-r from-emerald-400 to-cyan-400">
           <AvatarImage
             src={image}
             alt="avatar"

@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { CheckCheck } from "lucide-react";
+import useNotifypullStore from "@/zustland/notifypullStore";
 const PullNotify = () => {
   const { isPending, getPullNotify } = UsePullNotify() as {
     isPending: boolean;
@@ -22,6 +23,12 @@ const PullNotify = () => {
       status: string; // Assuming status is a string, adjust if it's a different type
     }[];
   };
+
+  const setNotifications = useNotifypullStore(
+    (state) => state.setNotifications
+  );
+
+  setNotifications(getPullNotify);
 
   if (!getPullNotify || getPullNotify.length === 0) {
     return (
@@ -42,7 +49,7 @@ const PullNotify = () => {
   return (
     <div>
       <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableCaption>A list of your recent pull requests.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Status</TableHead>

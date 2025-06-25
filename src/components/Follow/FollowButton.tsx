@@ -70,7 +70,7 @@ const FollowButton = ({ recerid }: FollowButtonProps) => {
     }
   };
 
-  const userinfo = user?._id === recerid;
+  const userinfo = user?._id !== recerid;
 
   const getButtonLabel = () => {
     if (requestStatus === "Accepted") return "Accepted";
@@ -99,11 +99,9 @@ const FollowButton = ({ recerid }: FollowButtonProps) => {
   const isDisabled =
     requestStatus === "Accepted" || requestStatus === "Please wait";
 
-  if (userinfo) return null;
-
   return (
     <>
-      {isAuthenticated ? (
+      {isAuthenticated && userinfo ? (
         <motion.button
           onClick={handleSubmit}
           onMouseEnter={() => setIsHovered(true)}

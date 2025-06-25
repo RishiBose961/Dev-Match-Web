@@ -2,7 +2,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import UseNotification from "@/hook/getNotify/UseNotification";
-import { Check, Mail, X } from "lucide-react";
+import { Mail, X } from "lucide-react";
+import AcceptedButton from "./AcceptedButton";
 
 const PullRequest = () => {
   const { isPending, getNotify } = UseNotification() as {
@@ -14,12 +15,12 @@ const PullRequest = () => {
     }[];
   };
 
-  console.log(getNotify);
-
-
-
   if (isPending) {
     return <div>Loading...</div>;
+  }
+
+  if (!getNotify || getNotify.length === 0) {
+    return <div>No Pull Request found.</div>;
   }
 
   return (
@@ -34,11 +35,11 @@ const PullRequest = () => {
           index: number
         ) => (
           <div className="max-w-5xl mx-auto" key={index}>
-            <div className="w-full max-w-5xl  backdrop-blur-sm rounded-lg shadow-lg border border-gray-100 p-4">
+            <div className="w-full max-w-5xl  backdrop-blur-sm rounded-lg shadow-lg border mb-2 border-gray-400 p-4">
               <div className="flex flex-wrap items-center justify-between gap-4 w-full">
                 {/* User Info Section */}
                 <div className="flex items-center gap-3">
-                  <Avatar className="h-12 w-12 ring-2 ring-blue-100">
+                  <Avatar className="h-12 w-12 ring-2 ring-blue-100 bg-gradient-to-r from-emerald-400 to-cyan-400">
                     <AvatarImage
                       src={item.senderId.image || "/placeholder.svg"}
                       alt={item.senderId.username}
@@ -77,10 +78,7 @@ const PullRequest = () => {
                     <X className="h-4 w-4 mr-1" />
                     Decline
                   </Button>
-                  <Button size="sm" className="bg-primary">
-                    <Check className="h-4 w-4 mr-1" />
-                    Accept
-                  </Button>
+                  <AcceptedButton id={item?._id} />
                 </div>
               </div>
             </div>
