@@ -64,6 +64,173 @@ _Below is an example of how you can instruct your audience on installing and set
    ```js
    const API_KEY = "ENTER YOUR API";
    ```
+
+
+Directory structure:
+├── README.md
+├── components.json
+├── eslint.config.js
+├── index.html
+├── package.json
+├── src
+│   ├── App.css
+│   ├── App.tsx
+│   ├── assets
+│   │   └── avatarNames.json
+│   ├── components
+│   │   ├── AudioComp
+│   │   │   ├── AudioControls.tsx
+│   │   │   ├── ParticipantList.tsx
+│   │   │   └── RoomHeader.tsx
+│   │   ├── DashBoard_Info
+│   │   │   ├── DashBoardCreate.tsx
+│   │   │   └── DashBoardInfo.tsx
+│   │   ├── Find_Dev
+│   │   │   ├── Avatar.tsx
+│   │   │   └── ProfileAvatar.tsx
+│   │   ├── Follow
+│   │   │   └── FollowButton.tsx
+│   │   ├── Header
+│   │   │   ├── Bottomavigation.tsx
+│   │   │   ├── Layout.tsx
+│   │   │   ├── NavBar.tsx
+│   │   │   └── SideBar.tsx
+│   │   ├── Join_Req
+│   │   │   └── datetime-picker.tsx
+│   │   ├── PrivateRoute.tsx
+│   │   ├── Register
+│   │   │   ├── Details.tsx
+│   │   │   ├── Experience.tsx
+│   │   │   └── PersonalInfo.tsx
+│   │   ├── Room_Info
+│   │   │   ├── AcceptedButton.tsx
+│   │   │   └── Room_Info.tsx
+│   │   ├── Scheduling
+│   │   │   ├── CreateSchedule.tsx
+│   │   │   ├── MainTab.tsx
+│   │   │   ├── PendingRequest.tsx
+│   │   │   ├── ScheduleSession.tsx
+│   │   │   ├── TimeRange.tsx
+│   │   │   └── UpcomingSession.tsx
+│   │   ├── Setting
+│   │   │   ├── SettingAbout_Skill.tsx
+│   │   │   ├── SettingAvatar.tsx
+│   │   │   ├── SettingExperience.tsx
+│   │   │   └── SettingProfile.tsx
+│   │   ├── mode-toggle.tsx
+│   │   ├── recommadation
+│   │   │   └── Recom_Dev.tsx
+│   │   ├── theme-provider.tsx
+│   │   ├── ui
+│   │   │   ├── avatar.tsx
+│   │   │   ├── badge.tsx
+│   │   │   ├── button.tsx
+│   │   │   ├── calendar.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── checkbox.tsx
+│   │   │   ├── drawer.tsx
+│   │   │   ├── dropdown-menu.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── label.tsx
+│   │   │   ├── popover.tsx
+│   │   │   ├── radio-group.tsx
+│   │   │   ├── scroll-area.tsx
+│   │   │   ├── select.tsx
+│   │   │   ├── separator.tsx
+│   │   │   ├── sheet.tsx
+│   │   │   ├── skeleton.tsx
+│   │   │   ├── switch.tsx
+│   │   │   ├── table.tsx
+│   │   │   ├── tabs.tsx
+│   │   │   └── tooltip.tsx
+│   │   └── useAuthEffect.tsx
+│   ├── hook
+│   │   ├── GetAccepted
+│   │   │   └── Getacceptedhook.tsx
+│   │   ├── GetJoinRequest
+│   │   │   └── GetJoinRequestById.tsx
+│   │   ├── VideoHook
+│   │   │   └── VideoHook.tsx
+│   │   ├── audiohook
+│   │   │   └── useAudioRoom.ts
+│   │   ├── getAllUser
+│   │   │   └── GetAllUser.tsx
+│   │   ├── getAvaliable
+│   │   │   ├── GetAvaliHook.tsx
+│   │   │   ├── GetAvaliableById.tsx
+│   │   │   └── GetOnline.tsx
+│   │   ├── getDashboard
+│   │   │   └── GetDashBoardHook.tsx
+│   │   ├── getNotify
+│   │   │   ├── UseNotification.tsx
+│   │   │   └── UsePullNotify.tsx
+│   │   ├── getRecommation
+│   │   │   └── UseDevlopHook.tsx
+│   │   ├── getRoom
+│   │   │   ├── GetJjoinRoom.tsx
+│   │   │   └── GetRoomJoin.tsx
+│   │   ├── getTimeSchedulling
+│   │   │   ├── GetScheduleEvery.tsx
+│   │   │   ├── GetScheduleId.tsx
+│   │   │   └── GetTimeSchedule.tsx
+│   │   └── getUserById
+│   │       └── GetUserId.tsx
+│   ├── hooks
+│   │   └── use-mobile.ts
+│   ├── index.css
+│   ├── lib
+│   │   └── utils.ts
+│   ├── main.tsx
+│   ├── pages
+│   │   ├── Audio-Space
+│   │   │   ├── Audio-Space.tsx
+│   │   │   ├── AudioChat.tsx
+│   │   │   ├── AudioRoom.tsx
+│   │   │   └── JoinRoom.tsx
+│   │   ├── Dashboard
+│   │   │   └── DashBoard.tsx
+│   │   ├── NotFound
+│   │   │   └── NotFound.tsx
+│   │   ├── Room
+│   │   │   └── Room.tsx
+│   │   ├── Setting
+│   │   │   └── setting.tsx
+│   │   ├── Video-Meeting
+│   │   │   ├── Participant.tsx
+│   │   │   └── VideoMeeting.tsx
+│   │   ├── auth
+│   │   │   ├── Login.tsx
+│   │   │   └── Register.tsx
+│   │   ├── find_devs
+│   │   │   ├── Devs.tsx
+│   │   │   ├── Main_Find_Devs.tsx
+│   │   │   └── Search_Find_Devs.tsx
+│   │   ├── home
+│   │   │   └── Home.tsx
+│   │   ├── join_Request
+│   │   │   └── JoinRequest.tsx
+│   │   ├── notification
+│   │   │   ├── Notication.tsx
+│   │   │   └── PullNotify.tsx
+│   │   ├── profile
+│   │   │   └── Profile.tsx
+│   │   ├── pull_request
+│   │   │   ├── AcceptedButton.tsx
+│   │   │   └── PullRequest.tsx
+│   │   └── schedule
+│   │       └── Schedule.tsx
+│   ├── slice
+│   │   └── authSlice.ts
+│   ├── store.ts
+│   ├── types
+│   │   └── index.ts
+│   ├── vite-env.d.ts
+│   └── zustland
+│       └── notifypullStore.ts
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
